@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #555;
+}
+.image{
+    border: 5px solid red;
+    height: 100%; 
+    width: 100%;
+}
+#im{
+    height: 100%; 
+    width: 100%;
+    display: none;
+    
+}
+#can2{
+    position:absolute;
+    top: 0%;
+    width: 100vw;
+    height: 10  0vh;
+    /* margin-left: 50pc;
+    margin-top: 25pc; */
+    
+    bottom: 2%;
+}
+#num{
+    position:absolute;
+    margin-left: 50pc;
+    margin-top: 50pc;
+}
+
+
+
+

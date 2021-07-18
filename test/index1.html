@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Test</title>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+        <style>
+            body {
+                display: grid;
+                grid-template-areas:
+                    'header header header header header header'
+                    'menu main main main main main'
+                    'menu main main main main main '
+                    'foot foot foot foot foot foot';
+            }
+            .header{
+                width: 99vw;
+                background-color:#87CEFA;
+                grid-area: header;
+                border: 4px solid #555;
+                border-radius: 8px;
+                margin-bottom: 2px;
+            }
+            #add{
+                height: 5vh;
+                width: 6vw;
+            }
+
+            #map {
+                margin-left: 2px;
+                border: 4px solid #555;
+                width: 78.59vw;
+                height: 85vh;
+                grid-area: main;
+                border-radius: 8px;
+            }
+
+            .legend {
+                line-height: 20px;
+                color: #555;
+            }
+
+            .legend i {
+                width: 18px;
+                height: 18px;
+                float: left;
+                margin-right: 9px;
+                opacity: 0.7;
+            }
+
+            .leaflet-popup-content-wrapper img {
+                width: 500px;
+                height: 500px;
+            }
+
+            .info {
+                background-color: #777;
+                display: flex;
+                font-size: larger;
+                
+                border-radius: 8px;
+
+
+
+            }
+
+            .info h4 {
+                margin: 0 0 6px;
+                color: rgb(3, 3, 3);
+            }
+
+            #bar {
+                border: 4px solid #555;
+                border-radius: 8px;
+                background-color: #fff;
+                width: 20vw;
+                height: 85vh;
+
+            }
+
+            h1 {
+                font-size: 250%;
+                display: flex;
+                justify-self: space-around;
+                align-items: center;
+                color: #555;
+            }
+
+            #can {
+                border: 5px solid #555;
+                background-color: white;
+            }
+            #foot{
+                grid-area: foot;
+                background-color: #87CEFA;
+                border: 4px solid #555;
+                border-radius: 8px;
+                margin-top: 2px;
+                width: 99vw;
+                height: 4.5vh;
+            }
+            
+        </style>
+    </head>
+
+    <body>
+        <div class="header">
+            <img id="add" src="./img/marker/gfin-logo-png-v2.png">
+        </div>
+
+        <div id="bar">
+            <h1 id="h">hello world</h1>
+            <h3 id="h3"></h3>
+            <h3 id="h4"></h3>
+        </div>
+
+        <div id="map"></div>
+        <footer id="foot">
+            <h4>ผู้จัดทำ</h4>
+            
+        </footer>
+
+    </body>
+
+    </html>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+<!-- data you want show  on map-->
+<script src="./data/line.js"></script>
+
+<script>
+
+    var map = L.map('map').setView([13.744915, 100.553991], 10);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+            'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1
+    }).addTo(map)
+
+
+    L.geoJSON(line).addTo(map);
+
+    let marker = L.marker([13.748253, 100.548175]).addTo(map);
+    marker.bindPopup();
+    marker.closePopup();
+
+    marker.on('mouseover', function (e) {
+        //open popup;
+        var popup = L.popup({
+            maxWidth: 1200,
+        })
+            .setLatLng([13.748253, 100.548175])
+            .setContent('<a href="https://www.google.com/" target="_blank"> <h1>ข้อมูล</h1> </a> ')
+            .openOn(map);
+    });
+    
+
+
+    function getColor(d) {
+        return d > 10 ? '#800026' :
+            d > 7 ? '#BD0026' :
+                d > 6 ? '#E31A1C' :
+                    d > 5 ? '#FC4E2A' :
+                        d > 4 ? '#FD8D3C' :
+                            d > 3 ? '#FEB24C' :
+                                d > 2 ? '#FED976' :
+                                    '#FFEDA0';
+    }
+
+    function highlightFeature(e) {
+        var layer = e.target;
+
+        layer.setStyle({
+            weight: 5,
+            color: '#666',
+            dashArray: '',
+            fillOpacity: 0.7
+        });
+
+        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            layer.bringToFront();
+        }
+    }
+
+    function resetHighlight(e) {
+        geojson.resetStyle(e.target);
+
+    }
+
+    var geojson;
+    // ... our listeners
+    geojson = L.geoJson(line);
+
+    function zoomToFeature(e) {
+        map.fitBounds(e.target.getBounds());
+
+    }
+
+    function style(feature) {
+        return {
+            fillColor: getColor(feature.properties.density),
+            weight: 5,
+            opacity: 1,
+            color: getColor(feature.properties.density),
+            dashArray: '3',
+            fillOpacity: 0.7,
+        };
+    }
+
+
+
+    function onEachFeature(feature, layer) {
+
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+            click: click
+        });
+        function click() {
+
+            info.onAdd = function (map) {
+                this._div = L.DomUtil.create('iframe', 'info'); // create a div with a class "info"
+                // this._div.id = 'can';
+
+                this.update();
+                return this._div;
+            };
+
+
+            // method that we will use to update the control based on feature properties passed
+            info.update = function () {
+                this._div.src = feature.properties.media;
+
+
+            };
+            info.addTo(map);
+            var b = document.getElementById("h").innerHTML = feature.properties.name;
+            var d = document.getElementById("h3").innerHTML = feature.properties.density;
+            var g = feature.properties.media;
+            var dd = document.getElementById("h4").innerHTML ='<a href= "'+ g +'">readme</a>';
+            
+
+        };
+
+    }
+
+
+
+    geojson = L.geoJson(line, {
+
+        style: style,
+        onEachFeature: onEachFeature
+    }).addTo(map);
+
+    /*===================================================
+                          LAYER CONTROL               
+    ===================================================*/
+
+    var baseLayers = {
+
+    };
+
+    var overlays = {
+        "PolygonData": geojson,
+
+    };
+
+    L.control.layers(baseLayers, overlays).addTo(map);
+
+    /*===================================================
+                              Sile BAR               
+        ===================================================*/
+
+
+
+    var info = L.control();
+
+
+
+    var legend = L.control({ position: 'bottomright' });
+
+    legend.onAdd = function (map) {
+
+        var div = L.DomUtil.create('div', ' legend'),
+            grades = [0, 2, 3, 4, 5, 6, 7, 10],
+            labels = [];
+
+        // loop through our density intervals and generate a label with a colored square for each interval
+        for (var i = 0; i < grades.length; i++) {
+            div.innerHTML +=
+                '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+                grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+        }
+
+        return div;
+    };
+    legend.addTo(map);
+
+
+
+
+
+
+
+
+
+</script>

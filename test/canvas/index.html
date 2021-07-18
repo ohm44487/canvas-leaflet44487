@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script type="text/javascript"></script> -->
+    <canvas id="content" width="1000" height="1500"></canvas>
+    <img src="scale.jpg" alt=""  id="image" style="display: none;">
+    <!-- <script src="index.js"></script>) -->
+    <script src="index3.js"></script>
+    <script type="text/javascript">
+   
+   
+   var context = document.querySelector('canvas').getContext('2d');
+    var imgObject = new Image();
+
+    var Linee = function(){
+                                            //วาดเส้นด้านบน
+        context.canvas.width2 = document.documentElement.clientWidth *0.279;
+        context.canvas.width3 = document.documentElement.clientWidth *0.2905;
+        context.canvas.height2 = document.documentElement.clientHeight *0.152;
+        context.canvas.height3 = document.documentElement.clientHeight *0.152;
+        context.beginPath();
+        context.strokeStyle = 'black' 
+        context.moveTo(context.canvas.width2, context.canvas.height2);
+        context.lineTo(context.canvas.width3,context.canvas.height3);
+        context.stroke();
+        context.closePath();
+                                    //วาดเส้นด้านขวา
+        context.canvas.width2 = document.documentElement.clientWidth *0.2830;
+        context.canvas.height2 = document.documentElement.clientHeight *0.452;
+        context.canvas.width3 = document.documentElement.clientWidth *0.2905;
+        context.canvas.height3 = document.documentElement.clientHeight *0.152;
+        context.beginPath();
+        context.strokeStyle = 'black' 
+        context.moveTo(context.canvas.width2, context.canvas.height2);
+        context.lineTo(context.canvas.width3,context.canvas.height3);
+        context.stroke();
+        context.closePath();
+                                    //วาดเส้นด้านล่าง
+        context.canvas.width2 = document.documentElement.clientWidth *0.272;
+        context.canvas.height2 = document.documentElement.clientHeight *0.452;
+        context.canvas.width3 = document.documentElement.clientWidth *0.2830;
+        context.canvas.height3 = document.documentElement.clientHeight *0.452;
+        context.beginPath();
+        context.strokeStyle = 'black'
+        context.moveTo(context.canvas.width2, context.canvas.height2);
+        context.lineTo(context.canvas.width3,context.canvas.height3);
+        context.stroke();
+        context.closePath();
+                                    //วาดเส้นด้านซ้าย
+        context.canvas.width2 = document.documentElement.clientWidth *0.272;
+        context.canvas.height2 = document.documentElement.clientHeight *0.452;
+        context.canvas.width3 = document.documentElement.clientWidth *0.279;
+        context.canvas.height3 = document.documentElement.clientHeight *0.152;
+        context.beginPath();
+        context.strokeStyle = 'black' 
+        context.moveTo(context.canvas.width2, context.canvas.height2);
+        context.lineTo(context.canvas.width3,context.canvas.height3);
+        context.stroke();
+        context.closePath();
+        }
+    
+    //                        function resize image,line 
+    var render = function(){
+        context.canvas.width = document.documentElement.clientWidth *0.5;
+        context.canvas.height = document.documentElement.clientHeight *0.5;
+        context.drawImage(imgObject,0,0,context.canvas.width,context.canvas.height)
+    
+        
+        Linee();
+
+        //                          เส้นกรอบนอก
+                                    //กรอบนอกด้านบน
+        context.canvas.width2 = document.documentElement.clientWidth *0.25;
+        context.canvas.height2 = document.documentElement.clientHeight *0.12;
+        context.canvas.width3 = document.documentElement.clientWidth *0.315;
+        context.canvas.height3 = document.documentElement.clientHeight *0.12;
+        context.beginPath();
+        context.strokeStyle = 'red' 
+        context.moveTo(context.canvas.width2, context.canvas.height2);
+        context.lineTo(context.canvas.width3,context.canvas.height3);
+        context.stroke();
+        context.closePath();
+                                    //กรอบนอกด้านซ้าย
+        context.canvas.width2 = document.documentElement.clientWidth *0.315;
+        context.canvas.height2 = document.documentElement.clientHeight *0.12;
+        context.canvas.width3 = document.documentElement.clientWidth *0.315;
+        context.canvas.height3 = document.documentElement.clientHeight *0.48;
+        context.beginPath();
+        context.strokeStyle = 'red' 
+        context.moveTo(context.canvas.width2, context.canvas.height2);
+        context.lineTo(context.canvas.width3,context.canvas.height3);
+        context.stroke();
+        context.closePath();
+        console.log("height 1: "+document.documentElement.clientHeight *0.12);
+        console.log("height 2: "+document.documentElement.clientHeight *0.48);
+                                    //กรอบนอกด้านล่าง
+        context.canvas.width2 = document.documentElement.clientWidth *0.25;
+        context.canvas.height2 = document.documentElement.clientHeight *0.48;
+        context.canvas.width3 = document.documentElement.clientWidth *0.315;
+        context.canvas.height3 = document.documentElement.clientHeight *0.48;
+        context.beginPath();
+        context.strokeStyle = 'red' 
+        context.moveTo(context.canvas.width2, context.canvas.height2);
+        context.lineTo(context.canvas.width3,context.canvas.height3);
+        context.stroke();
+        context.closePath();
+                                    //กรอบนอกด้านขวา
+        context.canvas.width2 = document.documentElement.clientWidth *0.25;
+        context.canvas.height2 = document.documentElement.clientHeight *0.48;
+        context.canvas.width3 = document.documentElement.clientWidth *0.25;
+        context.canvas.height3 = document.documentElement.clientHeight *0.12;
+        context.beginPath();
+        context.strokeStyle = 'red' 
+        context.moveTo(context.canvas.width2, context.canvas.height2);
+        context.lineTo(context.canvas.width3,context.canvas.height3);
+        context.stroke();
+        context.closePath();
+
+        //                             แถบสี
+        var my_gradient = context.createLinearGradient(0,0,0,650);
+        my_gradient.addColorStop(0, "green");
+        my_gradient.addColorStop(0.25, "lime");
+        my_gradient.addColorStop(0.5, "orange");
+        my_gradient.addColorStop(0.75, "red");
+        my_gradient.addColorStop(1, "black");
+        context.fillStyle = my_gradient;
+        context.fillRect(document.documentElement.clientWidth *0.315,document.documentElement.clientHeight *0.152,document.documentElement.clientWidth *0.015,document.documentElement.clientHeight *0.3);
+        
+        //                             เส้นระดับน้ำ
+        context.canvas.width2 = document.documentElement.clientWidth *0.315;
+        context.canvas.height2 = document.documentElement.clientHeight *0.299;
+        context.canvas.width3 = document.documentElement.clientWidth *0.25;
+        context.canvas.height3 = document.documentElement.clientHeight *0.307;
+        context.beginPath();
+        context.strokeStyle = 'blue' 
+        context.moveTo(context.canvas.width2, context.canvas.height2);
+        context.lineTo(context.canvas.width3,context.canvas.height3);
+        context.stroke();
+        context.closePath();
+
+        // context.fillStyle = "blue";
+        // context.fillRect(context.canvas.width2,context.canvas.height2,context.canvas.width2,context.canvas.height2);
+    }
+        imgObject.src = "./ima/2.jpg";
+        window.addEventListener("resize",render);
+        render();
+        
+    </script>
+
+</body>
+    
+    <style>
+        p{
+            align-items: center;
+        }
+        html{
+            height: 100%;
+            width: 100%;
+        }
+        *{
+            box-sizing: border-box;
+            margin:0;
+            padding:0;
+        }
+        body{
+            background-color: #202830;
+            color:#ffffff;
+            display: grid;
+            justify-items: center;
+            align-content: space-around;
+            height: 100%;
+        }
+        canvas{
+            justify-items: center;
+            align-items: center;
+        }
+    </style>
+</html>
