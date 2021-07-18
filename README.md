@@ -194,8 +194,8 @@ Function level_water use to handling position of line when you input percent hei
             }
         }
   ```
-  #### Draw
-#### square
+  ### Draw
+### square
 - .fillRect(x,y,height,width)
 ```javascript
    context.fillRect((cwo*0.65), (cto*0.025), cwc*0.02, (cto*0.95));
@@ -204,7 +204,7 @@ Function level_water use to handling position of line when you input percent hei
 ```javascript
    context.strokeRect(cwo*0.35, ctc*0.008, cwc*0.4, cto);
 ```
-#### Line
+### Line
 <dl>
   <dt>Function</dt>
   <dd>context.beginPath() : to set the path</dd>
@@ -221,7 +221,7 @@ Function level_water use to handling position of line when you input percent hei
    context.stroke();
 ```
         
-#### Text
+### Text
 <dl>
   <dt>Function</dt>
   <dd>fillText(text, x, y) : show the  Text as normally </dd>
@@ -242,10 +242,10 @@ Function level_water use to handling position of line when you input percent hei
   
 <img src="https://i.stack.imgur.com/5AAyW.png"/>  
   
-#### For the length and width had set.
+### For the length and width had set.
 Refer to this [link](https://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively)
   
-#### ResizeCanvas
+### ResizeCanvas
   ```javascript
       window.addEventListener("resize", resizeCanvas,false);
    ```
@@ -268,3 +268,5 @@ Refer to this [link](https://stackoverflow.com/questions/21064101/understanding-
   - [Map Tutorial using LeafletJS](https://youtu.be/EmfE9VyAYcY)
   - [How To Create A Choropleth Map Using Leaflet](https://youtu.be/G24uJ9rrl1w)
   - [Learn leaflet JS](https://youtube.com/playlist?list=PLDmvslp_VR0xjh7wGMNd_1kk0zUox6Sue)
+  #### Data GeoJson
+  - [แผนที่ แผนผังคลองในเขต กทม.](https://www.google.com/maps/d/viewer?ie=UTF8&oe=UTF8&msa=0&showlabs=1&mid=18k3-SzfIvl-RilpwW1XLbxDrdqg&ll=13.89391098851052%2C100.6247525&z=10)
