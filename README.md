@@ -155,7 +155,21 @@ And you can write this
   var htmlCanvas = document.getElementById('can2').getContext('2d')     
 ```
 ### Function level_water
-Function level_water use to handling position of line when you input percent height of water in canal.   
+ 
+ -  in HTML create button for send value to level_waterfunction and button clear_function for clear line
+ 
+  ```HTML
+   <p>
+    <h4 style="color: aquamarine;">Input number</h4><input id="Number" type="number"> //Set Input only Number
+    </p>
+    <p>
+        <button id="level_water()" onclick="level_water()">Enter</button>
+        <button id="clear_function" onclick="clear_function()">Clears</button>
+    </p>
+ ```
+
+Function level_water use to handling position of line when you input percent height of water in canal.Value recive  by use "first.Value"
+
   ```javascript
     var level_water = function () {
             var num = Number(first.value);
@@ -194,6 +208,14 @@ Function level_water use to handling position of line when you input percent hei
             }
         }
   ```
+  - For Clear_function() function It is a call to the function of the display to be the same.  and set a value to clear the value entered from Input
+             
+```javascript
+  var clear_function =  function(){
+            first.value='';
+            func_chk();//function check checkbox is working?
+        }
+  ```                 
   ### Draw
 ### square
 - .fillRect(x,y,height,width)
