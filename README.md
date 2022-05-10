@@ -7,7 +7,7 @@ In this project consist 2 component is Leaflet and HTML Canvas.
 - Canvas is manage  of scale, box, color bar for image water level. 
 ## Leaflet
 Leaflet is the leading open-source JavaScript library for mobile-friendly interactive maps
-<a href="https://filezeed.com/ib/Doeje7w07C"><img src="https://filezeed.s3.us-west-1.wasabisys.com/Doeje7w07C.png" alt="Doeje7w07C"/></a>
+<a href="https://drive.google.com/file/d/1dBPplHLBi5U26eDPKU4Y8byekP8nraSN/view?usp=sharing"><img src="https://filezeed.s3.us-west-1.wasabisys.com/Doeje7w07C.png" alt="Doeje7w07C"/></a>
 ### Function
 Leaflet use for handling map example control map base, mouse even, marker on map and etc.
 #### How to use leaflet in Javascript(JS)
